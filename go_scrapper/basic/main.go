@@ -52,6 +52,14 @@ func ageCheck(age int) bool{
 	return false
 }
 
+func pointer(){
+	a := 2
+	b := &a // &은 메모리값을 볼 수 있음
+	a = 10
+	*b = 20
+	fmt.Println(a,b,*b) // a는 값, b는 메모리 주소값 *b 는 해당 메모리의 값
+}
+
 func main(){
 	// fmt.Println("hello, world")
 	something.SayHello() //함수 export 를 하고 싶다면 대문자로 시작
@@ -71,4 +79,6 @@ func main(){
 	
 	fmt.Println(canIDrink(16))
 	fmt.Println(ageCheck(16))
+	
+	pointer()
 }
