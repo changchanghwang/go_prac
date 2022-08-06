@@ -60,6 +60,13 @@ func pointer(){
 	fmt.Println(a,b,*b) // a는 값, b는 메모리 주소값 *b 는 해당 메모리의 값
 }
 
+func array(){
+	arr := [5]int{1,2,3,4,5} //array
+	names := []string{"hwang","chang","hwan"} //slice
+	names = append(names,"hi")
+	fmt.Println(arr,names)
+}
+
 func main(){
 	// fmt.Println("hello, world")
 	something.SayHello() //함수 export 를 하고 싶다면 대문자로 시작
@@ -81,4 +88,5 @@ func main(){
 	fmt.Println(ageCheck(16))
 	
 	pointer()
+	array()
 }
