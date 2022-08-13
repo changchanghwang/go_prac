@@ -67,6 +67,26 @@ func array(){
 	fmt.Println(arr,names)
 }
 
+func mapFunc(){
+	hwang := map[string]string{"name":"hwang","age":"12"} // map[key type]value type {}
+	for _, value := range hwang{
+		fmt.Println(value)
+	}
+	fmt.Println(hwang)
+}
+
+type person struct{
+	name string
+	age int
+	favFood []string
+}
+
+func structFunc(){
+	favFood := []string{"kimchi","ramen"}
+	hwang := person{name:"hwang",age:28,favFood:favFood}
+	fmt.Println(hwang.name)
+}
+
 func main(){
 	// fmt.Println("hello, world")
 	something.SayHello() //함수 export 를 하고 싶다면 대문자로 시작
@@ -89,4 +109,6 @@ func main(){
 	
 	pointer()
 	array()
+	mapFunc()
+	structFunc()
 }
