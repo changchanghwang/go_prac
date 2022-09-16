@@ -6,14 +6,17 @@ import (
 )
 
 func main(){
-	go Count("hwang")
-	go Count("arthur") // 해당부분에서 Go routines를 진행하면 메인함수가 끝나버림. 백그라운드에서 실행하는것과 같다고 생가갛면 좋을 것 같음.
-	time.Sleep(time.Second * 5)
+	c := make(chan string)
+	people := [2]string{"hwang","arthur"}
+	for _, person := range people{
+		go isSexy(person, c)
+	} 
+	fmt.Println("waiting for messages")
+	fmt.Println(<- c)// channel로 부터 받은 메세지, 블로킹
+	fmt.Println(<- c)// channel로 부터 받은 메세지, 블로킹
 }
 
-func Count(person string){
-	for i:=0;i<10; i++{
-		fmt.Println(person,"is sexy", i)
-		time.Sleep(time.Second)
-	}
+func isSexy(person string, channel chan string){
+	time.Sleep(time.Second * 1)
+	channel <- person + " is sexy"
 }
