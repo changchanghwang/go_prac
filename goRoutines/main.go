@@ -7,13 +7,14 @@ import (
 
 func main(){
 	c := make(chan string)
-	people := [2]string{"hwang","arthur"}
+	people := [3]string{"hwang","arthur","chang"}
 	for _, person := range people{
 		go isSexy(person, c)
 	} 
 	fmt.Println("waiting for messages")
-	fmt.Println(<- c)// channel로 부터 받은 메세지, 블로킹
-	fmt.Println(<- c)// channel로 부터 받은 메세지, 블로킹
+	for i:=0; i< len(people); i++{
+		fmt.Println(<-c)
+	}
 }
 
 func isSexy(person string, channel chan string){
