@@ -11,8 +11,8 @@ func main(){
 	for _, person := range people{
 		go isSexy(person, c)
 	} 
-	fmt.Println("waiting for messages")
 	for i:=0; i< len(people); i++{
+		fmt.Println("waiting for messages")
 		fmt.Println(<-c)
 	}
 }
