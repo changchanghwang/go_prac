@@ -26,7 +26,7 @@ func main() {
 	delete(anotherMap, "k1")
 	delete(anotherMap, "k1")
 	delete(anotherMap, "k1")
-	fmt.Println("deletedMap:", anotherMap)
+	fmt.Println("deletedMap:", anotherMap) // delete 함수는 여러번 호출해도 에러가 발생하지 않는다.
 
 	_, ok := iMap["doesItExist"]
 	if ok {
