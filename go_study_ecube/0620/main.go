@@ -32,6 +32,9 @@ func main() {
 	// 	fmt.Println("Infinite loop")
 	// }
 	test()
+
+	aaa := A("hello World")
+	fmt.Println(aaa)
 }
 
 func test() {
@@ -40,4 +43,8 @@ func test() {
 
 	time.Now()
 	defer fmt.Println("hello world3")
+}
+
+func A[T any](item T) T {
+	return item
 }
