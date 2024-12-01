@@ -38,6 +38,10 @@ func main() {
 
 	fmt.Println("Starting server at port 8989")
 	if err := http.ListenAndServe(":8989", nil); err != nil {
+		// 에러를 stdout으로 출력하고 os.exit(1)을 호출하여 프로그램을 종료한다.
+		// panic은 recover로 복구가 가능하지만 log.Fatal은 복구가 불가능하다.
+		// 프로그램 종료되기 전에 반드시 실행되어야 되는 작업이 있다면 log.Fatal을 사용하면 안된다.
+		// graceful shutdown? https://emretanriverdi.medium.com/graceful-shutdown-in-go-c106fe1a99d9
 		log.Fatal(err)
 	}
 }
