@@ -11,11 +11,12 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "ParseForm() err: %v", err)
 		return
 	}
-	fmt.Fprintf(w, "POST request successful")
+	fmt.Fprintf(w, "POST request successful\n")
 	name := r.FormValue("name")
 	address := r.FormValue("address")
-	fmt.Fprintf(w, "Name = %s\n", name)
-	fmt.Fprintf(w, "Address = %s\n", address)
+	// fmt.Fprintf(w, "Name = %s\n", name) // io.Writer를 받아 포맷된 데이터를 쓴다.
+	// fmt.Fprintf(w, "Address = %s\n", address)
+	w.Write([]byte(fmt.Sprintf("Name = %s\nAddress = %s\n", name, address)))
 }
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
