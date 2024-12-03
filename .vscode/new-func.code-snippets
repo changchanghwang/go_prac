@@ -1,0 +1,14 @@
+{
+	"Generate main function template": {
+		"scope": "go",
+		"prefix": "nf",
+		"body": [
+			"package main",
+			"",
+			"func main () {",
+			"",
+			"}",
+		],
+		"description": "Generate main function template"
+	},
+}
