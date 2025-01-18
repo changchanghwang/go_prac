@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"
-
+	applicationError "bakg.six/lib/application-error"
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -12,7 +11,7 @@ func UpdateEmployee(c *fiber.Ctx) error {
 	idParam := c.Params("id")
 	employee := new(Employee)
 	if err := c.BodyParser(employee); err != nil {
-		return c.Status(400).SendString(err.Error())
+		return applicationError.New(400, err.Error(), "Invalid request body.")
 	}
 
 	query := bson.D{{Key: "_id", Value: idParam}}
@@ -30,11 +29,10 @@ func UpdateEmployee(c *fiber.Ctx) error {
 	err := mg.Db.Collection("employees").FindOneAndUpdate(c.Context(), query, update).Err()
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
-			fmt.Println("!!!", err.Error(), query)
-			return c.SendStatus(400)
+			return applicationError.New(404, err.Error(), "Employee not found.")
 		}
 
-		return c.SendStatus(500)
+		return applicationError.New(500, err.Error(), "Something went wrong. Please try again later.")
 	}
 
 	employee.ID = idParam

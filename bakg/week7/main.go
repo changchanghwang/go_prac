@@ -5,7 +5,9 @@ import (
 	"log"
 	"time"
 
+	"bakg.six/middlewares"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -56,7 +58,11 @@ func main() {
 	if err := Connect(); err != nil {
 		log.Fatal(err)
 	}
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		ErrorHandler: middlewares.ErrorHandler,
+	})
+
+	app.Use(logger.New())
 
 	app.Get("/employee", GetEmployees)
 	app.Post("/employee", CreateEmployee)
