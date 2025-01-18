@@ -16,7 +16,11 @@ func DeleteEmployee(c *fiber.Ctx) error {
 	}
 
 	if result.DeletedCount < 1 {
-		return applicationError.New(404, err.Error(), "Employee not found.")
+		return applicationError.New(
+			404,
+			"Employee not found.",
+			"Employee not found.",
+		)
 	}
 
 	return c.Status(200).JSON(fiber.Map{"message": "Employee deleted successfully"})
